@@ -1,0 +1,21 @@
+########### orignial 32 bit file #############
+
+nasm -f elf32 32_bit.asm
+ld -m elf_i386 -s -o 32_bit 32_bit.o
+./32_bit
+
+########### orignial 64 bit file #############
+
+nasm -f elf64 64_bit_original.asm
+ld 64_bit_original.o -o 64_bit
+./64_bit
+
+########### Calling interpreter #############
+
+g++ interpreter.cpp
+./a.out > 64_bit.asm
+
+########### Generated 64 bit file #############
+nasm -f elf64 64_bit.asm
+ld 64_bit.o -o 64_bit
+./64_bit
